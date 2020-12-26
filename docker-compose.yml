@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  php:
+    build:
+      context: ./php
+    volumes:
+      - ./app:/app
+      - ./php/opcache.ini:/usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
+    ports:
+      - 9000:9000
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./app:/app
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf    
